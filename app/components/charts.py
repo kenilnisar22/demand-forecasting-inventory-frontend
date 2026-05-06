@@ -5,8 +5,8 @@ Provides interactive visualizations using Plotly and Matplotlib.
 
 import streamlit as st
 import pandas as pd
-import plotly.graph_objects as go
-import plotly.express as px
+import plotly.graph_objects as go  # type: ignore
+import plotly.express as px  # type: ignore
 from typing import List, Optional, Dict, Any
 import numpy as np
 
@@ -20,7 +20,7 @@ def line_chart_with_forecast(
     y_label: str = "Quantity",
     x_label: str = "Date",
     height: int = 400,
-) -> go.Figure:
+) -> "go.Figure":
     """
     Create an interactive line chart with optional forecast overlay.
     
@@ -159,7 +159,7 @@ def multi_series_line_chart(
     fig = go.Figure()
     
     for idx, col in enumerate(y_columns):
-        color = colors[idx % len(colors)]
+        color = colors[idx % len(colors)]  # type: ignore
         fig.add_trace(
             go.Scatter(
                 x=df[x_column],
@@ -320,7 +320,7 @@ def scatter_plot(
 def box_plot(
     df: pd.DataFrame,
     x_column: Optional[str] = None,
-    y_column: str = None,
+    y_column: Optional[str] = None,
     title: str = "Box Plot",
     y_label: str = "Value",
     height: int = 400,
